@@ -1,27 +1,31 @@
 # 세마고등학교 물품관리 사이트 개발
 
-## 프로젝트 명
+## 💻 프로젝트 명
 
 세마고등학교 물품관리 사이트 개발 
 
-## 기획 및 개발
+## 📚 기획 및 개발
 
-문진혁 (개인개발)
+문진혁 (기획, 개발)
 
-## 제작 기간
+## ⌚제작 기간
 
 2022.03.05 ~ 2022.03.19 
 
-## 사용 기술
+## ⚙ 사용 기술
 
 - **Front-End**: Ejs , Css , Bootstrap
 - **Back-End**: Node-Js, Express, MongoDB
 
-## 배포
+## 🚀 배포
 
-[세마고 과학실 물품과학시스템](https://port-0-semascience-fyyf25lbmid9vi.gksl2.cloudtype.app/)
+[세마고 과학실 물품과학사이트](https://port-0-semascience-fyyf25lbmid9vi.gksl2.cloudtype.app/)
 
 CloudTYPE 에서 배포하였음.
+
+## ⏳ 추후 예정
+
+빠른 접속을 위해 WebView 앱 제작 예정 및 플레이스토어에 배포 예정 
 
 ## 프로젝트 기획 배경
 
