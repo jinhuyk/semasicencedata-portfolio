@@ -57,50 +57,7 @@ CloudTYPE 에서 배포하였음.
 ![세마고등학교 물품관리프로젝트 (1).png](./image/%25EC%2584%25B8%25EB%25A7%2588%25EA%25B3%25A0%25EB%2593%25B1%25ED%2595%2599%25EA%25B5%2590_%25EB%25AC%25BC%25ED%2592%2588%25EA%25B4%2580%25EB%25A6%25AC%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8_(1).png)
 
 ### API 명세서
-
-- **물품 공지사항 전체 조회**
-    - GET /
-
-### 물품
-
-- **교실별 물품 조회**
-    - 뉴턴실 - GET /newton
-    - 퀴리실 - GET /curie
-    - 다윈실 - GET /dawrin
-    - 케풀러실 - GET/kepler
-    - 리소스실 - GET/resource
-- 물품 검색 조회
-    - GET /search
-- **물품 상세 조회**
-    - GET /data/{id}
-- **물품 추가 요청**
-    - GET /post
-    - POST /post
-- **물품 수정 요청**
-    - GET /edit/{id}
-    - POST /edit
-- **물품 삭제**
-    - DELETE /data
-
-### 사용자
-
-- **사용자 조회**
-    - GET /member
-- **사용자 추가 요청**
-    - POST /user
-- **사용자 삭제 요청**
-    - DELETE /user
-
-### 공지사항 추가
-
-- **공지사항 추가 요청**
-    - GET /postadmin
-    - POST /postadmin
-- **공지사항 수정 요청**
-    - GET /edit/{id}
-    - POST /editadmin
-- **공지사항 삭제 요청**
-    - DELETE /dataamin
+fixed(2022.12.30) 참고
 
 ### 기능 설명
 
