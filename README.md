@@ -23,6 +23,10 @@
 
 CloudTYPE 에서 배포하였음.
 
+## 🔧 수정사항
+
+[Fixed(2022.12.30)](https://github.com/jinhuyk/semasicencedata-portfolio/edit/main/README.md#fixed-20221230)
+
 ## ⏳ 추후 예정
 
 - REST.API 에 의거하여 프로그래밍
@@ -156,3 +160,57 @@ CloudTYPE 에서 배포하였음.
     - 검색 기능
         
         ![Untitled](./image/Untitled%2010.png)
+
+## Fixed. (2022.12.30)
+- REST API 에 맞게 URL 변경
+- 세부사항 수정
+
+### API 명세서 업데이트
+
+- **물품 공지사항 전체 조회**
+    - GET /
+
+#### 물품
+
+- **교실별 물품 조회**
+    - 뉴턴실 - GET /newton
+    - 퀴리실 - GET /curie
+    - 다윈실 - GET /dawrin
+    - 케풀러실 - GET /kepler
+    - 리소스실 - GET /resource
+- 물품 검색 조회
+    - GET /search
+- **물품 상세 조회**
+    - GET /items/{id}
+- **물품 추가 요청**
+    - GET /items
+    - POST /items
+- **물품 수정 요청**
+    - GET /edit/{id}
+    - POST /edit-items
+- **물품 삭제**
+    - DELETE /items
+
+#### 사용자
+
+- **사용자 조회**
+    - GET /members
+- **사용자 추가 요청**
+    - POST /members
+- **사용자 삭제 요청**
+    - DELETE /members
+
+#### 공지사항 추가
+
+- **공지사항 추가 요청**
+    - GET /notices
+    - POST /items
+- **공지사항 수정 요청**
+    - GET /edit/{id}
+    - POST /edit-notice
+- **공지사항 삭제 요청**
+    - DELETE /items
+
+최대한 REST API 에 맞게 작성
+하지만 edit 관련 부분은 처음 설계 실패로 수정 불가능
+
