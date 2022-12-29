@@ -57,7 +57,7 @@ CloudTYPE 에서 배포하였음.
 ![세마고등학교 물품관리프로젝트 (1).png](./image/%25EC%2584%25B8%25EB%25A7%2588%25EA%25B3%25A0%25EB%2593%25B1%25ED%2595%2599%25EA%25B5%2590_%25EB%25AC%25BC%25ED%2592%2588%25EA%25B4%2580%25EB%25A6%25AC%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8_(1).png)
 
 ### API 명세서
-fixed(2022.12.30) 참고
+[Fixed(2022.12.30)](https://github.com/jinhuyk/semasicencedata-portfolio/edit/main/README.md#fixed-20221230) 참고
 
 ### 기능 설명
 
