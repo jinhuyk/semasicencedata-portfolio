@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <style type="text/css">
+        a:link { color: red; text-decoration: none;}
+        a:visited { color: black; text-decoration: none;}
+        a:hover { color: blue; text-decoration: underline;}
+       </style>
+    <title>세마고 과학실 물품과학시스템</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WH9E1MYSDD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WH9E1MYSDD');
+</script>
+</head>
+<body>
+    <div class="header-top">
+        <a href="/"><div>
+            <img src = "/resources/logo.png" height="80">
+        </div></a>
+    </div>
+
+    <div style="padding: 4px;">
+       
+        <div style="display: flex; margin-bottom: 4px;">
+            <input type="text"class="form-control" id="title" style="flex : 1; margin:6px;" value="<%=data.title %>">
+
+        </div>
+        <div style="padding: 3px; margin-bottom: 4px; margin:6px;">
+            <span><input  class="form-check-input" type="radio" name="type" value="newton" checked> 뉴턴실</span>
+            <span><input  class="form-check-input" type="radio" name="type" value="curie"> 퀴리실</span>
+            <span><input  class="form-check-input" type="radio" name="type" value="darwin"> 다윈실</span>
+            <span><input  class="form-check-input" type="radio" name="type" value="kepler"> 케플러실</span>
+            <span><input  class="form-check-input" type="radio" name="type" value="resource"> 리소스실</span>
+            <span><input  class="form-check-input" type="radio" name="type" value="admin"> 공지사항</span>
+        </div>
+        <div style="display: flex; margin-bottom: 4px;">
+            <input type="text"class="form-control" id="place" style="flex : 1;margin:6px;" value="<%=data.place%>">
+
+        </div>
+        <div style="margin: 2px;">
+            <div class="toolbar"  style="margin:6px; padding: 5px; border: 1px solid rgb(201, 201, 201); border-radius: 5px; padding: 2px; padding-left : 5px;"> <!-- B -->
+                <a href="" data-command='bold' class="tool">
+                  <i class='fa fa-bold' ></i>
+                </a>
+                <a href="" data-command='italic'>
+                  <i class='fa fa-italic'></i>
+                </a>
+                <a href="" data-command='underline'>
+                  <i class='fa fa-underline'></i>
+                </a>
+                <a href="" data-command='strikeThrough'style="margin-right: 8px;">
+                  <i class='fa fa-strikethrough'></i>
+                </a>
+              </div>
+              <span class="input-group" style="margin:2px; padding: 5px;">
+                <input type="text" name="imgup" id="imglink" class="form-control" placeholder="이미지 링크 (구글에서 이미지 주소 복사)"><button id="imageup" class="btn btn-outline-secondary" >이미지 넣기</button>
+                
+            </span>
+            <span class="input-group" style="margin:2px; padding: 5px;">
+                <input type="text" name="urlnm" id="urlname" class="form-control" placeholder="바로가기 이름"> <input type="text" name="urlup" id="urllink" class="form-control" placeholder="링크"><button id="urlup" class="btn btn-outline-secondary" >링크 넣기</button>
+                
+            </span>
+            <div>
+    
+                <div contenteditable="true" class="body-text" style="margin:2px; padding: 10px;" id = "editor"><%- data.body%></div>
+            </div>
+        </div>
+        
+        <div class="nick" >                
+            <input type="number"class="form-control" id="number" value="<%=data.number%>" >
+        </div>
+
+        <div style="margin: 4px; text-align: center;">
+            <button id="post-add" class="btn btn-primary">저장하기</button> 
+        </div>
+        
+        
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    document.querySelectorAll('.toolbar a') // C 
+      .forEach(aEl => aEl.addEventListener('click', function (e) {  
+        e.preventDefault(); 
+        const command = aEl.dataset.command;  
+          document.execCommand(command); 
+        }));    
+    $('.imageup').click(function(){
+        var linkimg = String($('#imglink').val())
+        var tag = "<img src = '" + linkimg + "'>"
+        $("#editor").append(tag)
+    })
+    $('#urlup').click(function(){
+        var link = String($('#urllink').val())
+        var name = String($('#urlname').val())
+        var tag = "<a href= '" + link + "'>"+name+"</a>"
+        $("#editor").append(tag)
+    })
+  </script>
+<script>
+    function redirectList (){
+        window.location.href="/"
+    }
+    $('#post-add').click(function(){
+        var body = document.getElementById('editor').innerHTML;
+        var type = String( $('input[name=type]:checked').val())
+        var title = String($('#title').val())
+        var number = parseInt($('#number').val())
+        var place = String($('#place').val())
+        console.log(body)
+        if(body =='' || title ==''){
+            alert("물품을 작성해주세요")
+        }
+        else{
+            
+            let check = prompt("관리자 비밀번호를 입력해주세요")
+            $.ajax({
+                method : "POST",
+                url:'/edit-item',
+                data : {
+                    id : <%= data._id %>,
+                    title : title,
+                    body : body,
+                    type : type,
+                    number : number,
+                    place : place,
+                    check : check
+
+                }
+        }).done(function(rst){
+            if(rst == '304'){
+                alert('관리자 비밀번호가 일치하지 않습니다.')
+            }
+            else if(rst == '200') {
+                alert('수정되었습니다')
+                redirectList();
+            }
+        })  
+    } 
+    })
+    
+</script>
+</html>

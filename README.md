@@ -64,6 +64,18 @@ CloudTYPE 에서 배포하였음.
 
 ## 구현 기능
 
+해당 github 페이지 내 sourceCode 에서 코드를 볼 수 있음
+※해당 sourceCode로는 사이트를 운영시킬 수 없음(DB_URL 제거 및 일부 private코드 제거)
+
+- resources
+    이미지 폴더
+- routes
+    벡엔드 코드 폴더
+- styles
+    css 코드 폴더
+- views
+    ejs 코드 폴더
+
 ### 데이터베이스 설계
 
 ![세마고등학교 물품관리프로젝트 (1).png](./image/%25EC%2584%25B8%25EB%25A7%2588%25EA%25B3%25A0%25EB%2593%25B1%25ED%2595%2599%25EA%25B5%2590_%25EB%25AC%25BC%25ED%2592%2588%25EA%25B4%2580%25EB%25A6%25AC%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8_(1).png)

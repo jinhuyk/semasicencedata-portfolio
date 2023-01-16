@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>세마고 과학실 물품과학시스템</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WH9E1MYSDD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WH9E1MYSDD');
+</script>
+</head>
+<body>
+    <div class="header-top">
+        <a href="/"><div>
+            <img src = "/resources/logo.png" height="80">
+        </div></a>
+    </div>
+    <div style="margin: 10px;">
+        <div style="padding: 5px;">
+ 
+                <div>
+                    <div style="font-weight: bold; font-size: 20px;"><%= data.title %></div>
+                    
+                    <% if( data.type != "admin") { %> 
+                    <div style="font-size:15px; color:black"> <span>보관 위치: <%= data.place %></span></div>
+                    <% } %>
+                    <div style="font-size: 13px; color : rgb(102,89,89);">담당자 : <%=data.manager %></div>
+                </div>
+                <br/>
+                <% if( data.type != "admin") { %> 
+                <div id="banner" style=" text-align: center; border:2px solid orange; width: 300;border-radius: 5px;"><div style="font-weight: bolder;  font-size: xx-large;"><%= data.number - data.usenum %></div><div style="font-size: smaller;">사용가능</div></div>
+                <% } %>
+      
+            <hr/>
+        <div class="htmlbody"><%- data.body %> </div>
+            
+           <hr/>
+        </div>
+        
+        <div>
+            <div  class="container">
+                <div class="row">
+                    <% for(var i =usr.length-1; i >= 0;i--) { %>
+                        <div class = "col-md-2" id="colstyle" >
+                            <div style="width: 92%; float: left;">
+                                <div class="li-title"><%= usr[i].user %></div> 
+                                <div class="li-detail"><%= usr[i].detail %></div> 
+                            </div>  
+                            <div >
+                                <button style="margin-top: 5px;" class="btn btn-danger" id="delusr" data-id="<%= usr[i]._id%>">사용완료</button>
+                            </div>
+    
+                        </div>
+                    <% } %>
+                </div>
+                
+            </div>
+                
+            <br/>
+    
+            <% if( data.type != "admin") { %> 
+            
+            <div class="input-group" id ="userAdd">
+                <input type="text"class="form-control"  style="width: 30;"id="user" placeholder="학번 이름" >
+                <input type="text"class="form-control" id="userDet" placeholder="사용 용도 및 언제까지 사용할지" >
+                <button class="btn btn-secondary" id="adduser" >등록하기</button>
+            </div>
+            <% } %>
+        </div>
+        
+
+
+        <br/>
+
+        <div style="text-align: center;">
+            <button class="btn btn-danger" id = "del">삭제</button>
+            <button class="btn btn-light" id="edit" onclick="location.href = '/edit/'+<%= data._id %> ">수정하기</button>
+        </div>
+
+    </div>
+    
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script>
+    function redirectList (){
+        window.location.href="/"
+    }
+    $('#del').click(function(){
+            let check = prompt("관리자 비밀번호를 입력해주세요")
+    
+            $.ajax({
+            method : 'DELETE',
+            url : '/items',
+            data : {
+                id : <%= data._id %>,
+                check : check
+            }
+        }).done(function(rst){
+            if(rst == '304'){
+                alert('관리자 비밀번호가 일치하지 않습니다.')
+            }
+            else if(rst == '200') {
+                alert('공지사항이 삭제되었습니다')
+                redirectList();
+            }
+        })  
+        
+
+
+
+
+
+        
+        
+        
+    })
+</script>
+</html>

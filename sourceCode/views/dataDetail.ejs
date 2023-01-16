@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title><%= data.title %></title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WH9E1MYSDD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WH9E1MYSDD');
+
+</script>
+</head>
+<body>
+    <div class="header-top">
+        <a href="/"><div>
+            <img src = "/resources/logo.png" height="80">
+        </div></a>
+    </div>
+    <div style="margin: 10px;">
+        <div style="padding: 5px;">
+ 
+                <div>
+                    <div style="font-weight: bold; font-size: 20px;"><%= data.title %></div>
+                    
+                    <% if( data.type != "admin") { %> 
+                    <div style="font-size:15px; color:black"> <span>보관 위치: 
+                        <% if( data.type == "newton") { %> 
+                            뉴턴실
+                        <%}%>
+                        <% if( data.type == "curie") { %> 
+                            퀴리실
+                        <%}%>
+                        <% if( data.type == "darwin") { %> 
+                            다윈실
+                        <%}%>
+                        <% if( data.type == "kepler") { %> 
+                            케플러실
+                        <%}%>  
+                        <% if( data.type == "resource") { %> 
+                            리소스실
+                        <%}%>   
+                        
+                        <%= data.place %></span></div>
+                    <% } %>
+                    <div style="font-size: 13px; color : rgb(102,89,89);">담당자 : <%=data.manager %></div>
+                </div>
+                <br/>
+                <% if( data.type != "admin") { %> 
+                <div id="banner" style=" text-align: center; border:2px solid orange; width: 300;border-radius: 5px;
+                
+                background-image: url('/resources/<%=data.type %>.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center right;
+                
+                "><div style="font-weight: bolder;  font-size: xx-large;"><%= data.number - data.usenum %></div><div style="font-size: smaller; margin-bottom: 3px;">사용가능</div></div>
+                <% } %>
+      
+            <hr/>
+        <div class="htmlbody"><%- data.body %> </div>
+            
+           <hr/>
+        </div>
+        
+        <div>
+            <div  class="container">
+                <div class="row">
+                    <% for(var i =usr.length-1; i >= 0;i--) { %>
+                        <div class = "col-md-2" id="colstyle" >
+                            
+                                <div class="li-title"><%= usr[i].user %></div> 
+                                <div class="li-detail"><%= usr[i].detail %></div> 
+                                <div class="li-detail" style="font-size: x-small;"><%= usr[i].time %></div> 
+                            <div >
+                                <button style="margin-top: 5px;" class="btn btn-danger delusr"  data-id="<%= usr[i]._id%>">사용완료</button>
+                            </div>
+    
+                        </div>
+                    <% } %>
+                </div>
+                
+            </div>
+                
+            <br/>
+    
+            <% if( data.type != "admin") { %> 
+            
+            <div class="input-group" id ="userAdd">
+                <input type="text"class="form-control"  style="width: 30;"id="user" placeholder="학번 이름" >
+                <input type="text"class="form-control" id="userDet" placeholder="사용 용도" >
+                <button class="btn btn-secondary" id="adduser" >사용하기</button>
+            </div>
+            <% } %>
+        </div>
+        
+
+
+        <br/>
+
+        <div style="text-align: center;">
+            <button class="btn btn-danger" id = "del">삭제</button>
+            
+            <button class="btn btn-light" id="edit" onclick="editred()">수정하기</button>
+            <button class="btn btn-success" id = "qr">QR코드</button>
+            
+
+        </div>   
+        <div id="qrcode" style="text-align: center;"></div> 
+    </div>
+    
+    
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<script type="text/javascript">
+    $('#qr').click(function(){
+        new QRCode(document.getElementById("qrcode"), 
+        {
+            text : window.location.href,
+            width : 100,
+            height : 100
+        });
+    })
+
+    </script>
+<script>
+    $(document).ready(function(){
+        var num = <%= data.number - data.usenum %>
+    if(num == 0){
+        $("#banner").css("border","2px solid red")
+        alert("현재 물품은 사용할수 없습니다. (자연과학부 문의)")
+    }
+    else if(num == <%=data.number %>){
+        $("#banner").css("border","2px solid green")
+    }
+    })
+
+</script>
+<script>
+    function editred(){
+        if(<%= data.usenum%> > 0){
+                alert('사용중인 학생이 있습니다, 먼저 사용종료를 해주세요')
+            }
+            else{
+                location.href = '/edit/'+<%= data._id %> 
+            }
+    }
+    function redirectList (){
+        window.location.href="/"
+    }
+    $('#del').click(function(){
+            if(<%= data.usenum%> > 0){
+                alert('사용중인 학생이 있습니다, 먼저 사용종료를 해주세요')
+            }
+            else{
+            let check = prompt("관리자 비밀번호를 입력해주세요")
+    
+            $.ajax({
+            method : 'DELETE',
+            url : '/items',
+            data : {
+                id : <%= data._id %>,
+                check : check
+            }
+        }).done(function(rst){
+            if(rst == '200'){
+                alert('물품이 삭제되었습니다')
+                redirectList();
+                
+            }
+            else if(rst == '304') {
+                alert('관리자 비밀번호가 일치하지 않습니다.')
+            }
+        })                  
+            }
+
+        
+
+
+
+
+
+        
+        
+        
+    })
+    $('.delusr').click(function(e){
+        let check = prompt("전화번호를 입력해주세요 (- 제외)")
+        var regExp = /^\d{2,3}\d{3,4}\d{4}$/;
+        if(!regExp.test(check)){
+            alert('전화번호 형식이 아닙니다.')
+        }
+        else{
+            $.ajax({
+            method : 'DELETE',
+            url : '/members',
+            data : {
+                id : e.target.dataset.id,
+                check : check
+            }
+        }).done(function(rst){
+            if(rst == '200'){
+                alert("사용 종료하였습니다, 물품을 제자리에 놔주세요")
+                location.href='/items/'+<%= data._id %>
+            }
+            else if(rst == '304'){
+                alert('전화번호가 다릅니다. 문의: 자연과학부')
+            }
+        })
+        }
+        
+    })  
+
+
+    
+    $('#adduser').click(function(){
+        var num = <%= data.number - data.usenum %>
+        if(num == 0){
+            alert("현재 물품은 사용할수 없습니다. (자연과학부 문의)")
+        }
+        else{
+            var user= String($('#user').val())
+        var detail = String($('#userDet').val())
+        let check = prompt("전화번호를 입력해주세요 (- 제외)")
+        var regExp = /^\d{2,3}\d{3,4}\d{4}$/;
+        let time = new Date();
+        let today = time.toLocaleString()
+        if(!regExp.test(check)){
+            alert('전화번호 형식이 아닙니다.')
+        }
+        else{
+            $.ajax({
+            method : 'POST',
+            url : '/members',
+            data : {
+                id : <%= data._id %>,
+                user : user,
+                detail : detail,
+                check : check,
+                time : today
+            }
+        }).done(function(rst){
+            alert("지금부터 사용가능합니다")
+            location.href='/items/'+<%= data._id %>
+        })
+        }
+        }
+        
+        
+    })
+</script>
+</html>
