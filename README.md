@@ -65,6 +65,7 @@ CloudTYPE 에서 배포하였음.
 ## 구현 기능
 
 해당 github 페이지 내 sourceCode 에서 코드를 볼 수 있음
+
 ※해당 sourceCode로는 사이트를 운영시킬 수 없음(DB_URL 제거 및 일부 private코드 제거)
 
 - resources
